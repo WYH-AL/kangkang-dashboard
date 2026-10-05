@@ -90,7 +90,7 @@ td.content-cell { text-align: left; max-width: 280px; overflow: visible; text-ov
   <div class="header">
     <div>
       <h1>🏃 康复训练看板</h1>
-      <div class="sub">汪亚辉 · 股四头肌肌腱损伤康复 · 生成于 2026-10-05 13:03</div>
+      <div class="sub">汪亚辉 · 股四头肌肌腱损伤康复 · 生成于 2026-10-05 13:09</div>
     </div>
   </div>
 
@@ -173,7 +173,7 @@ function pwdHash(str) {
   return ('00000000' + h.toString(16)).slice(-8);
 }
 function tryUnlock() {
-  const pwd = document.getElementById('pwd-input').value;
+  const pwd = document.getElementById('pwd-input').value.trim();
   // 原密码 PWD_HASH 永久有效；临时密码 TEMP_PWD_HASH 仅在有效期 TEMP_EXPIRY 内有效
   let ok = pwdHash(pwd) === PWD_HASH;
   if (!ok && TEMP_PWD_HASH && Date.now() < TEMP_EXPIRY) {
