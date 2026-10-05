@@ -90,7 +90,7 @@ td.content-cell { text-align: left; max-width: 280px; overflow: visible; text-ov
   <div class="header">
     <div>
       <h1>🏃 康复训练看板</h1>
-      <div class="sub">汪亚辉 · 股四头肌肌腱损伤康复 · 生成于 2026-10-05 12:45</div>
+      <div class="sub">汪亚辉 · 股四头肌肌腱损伤康复 · 生成于 2026-10-05 12:57</div>
     </div>
   </div>
 
@@ -172,7 +172,11 @@ function pwdHash(str) {
 }
 function tryUnlock() {
   const pwd = document.getElementById('pwd-input').value;
-  if (pwdHash(pwd) === PWD_HASH) {
+  // 每日临时密码：temp + YYYYMMDD，仅当天有效（日期一变自动失效），原密码 PWD_HASH 永久有效
+  const d = new Date();
+  const pad = function(n) { return String(n).padStart(2, '0'); };
+  const tempPwd = 'temp' + d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate());
+  if (pwd === tempPwd || pwdHash(pwd) === PWD_HASH) {
     document.getElementById('gate').style.display = 'none';
     document.getElementById('protected').style.display = 'block';
     unlocked = true;
