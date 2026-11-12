@@ -19,6 +19,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft
 .progress-top .info { font-size: 14px; opacity: .95; }
 .bar { background: rgba(255,255,255,.25); height: 10px; border-radius: 6px; overflow: hidden; }
 .bar > div { height: 100%; background: #fff; border-radius: 6px; transition: width .5s; }
+.stages { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; font-size: 12px; }
+.stage { padding: 3px 12px; border-radius: 20px; background: rgba(255,255,255,.16); color: rgba(255,255,255,.82); }
+.stage.done { background: rgba(255,255,255,.34); color: #fff; font-weight: 600; }
+.stage.current { background: #fff; color: #2563eb; font-weight: 700; }
 .grid-stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; margin-bottom: 18px; }
 .card { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.05); }
 .card.stat { padding: 16px 18px; }
@@ -99,16 +103,17 @@ td.content-cell { text-align: left; max-width: 280px; overflow: visible; text-ov
   <div class="header">
     <div>
       <h1>📋 康复记录汇总</h1>
-      <div class="sub">汪亚辉 · 股四头肌肌腱损伤康复 · 生成于 2026-11-12 23:50</div>
+      <div class="sub">汪亚辉 · 股四头肌肌腱损伤康复 · 生成于 2026-11-12 23:58</div>
     </div>
   </div>
 
   <div class="progress-card">
     <div class="progress-top">
-      <div class="big">第 42 天 <span style="font-size:16px;font-weight:400;">/ 共 42 天（6 周）</span></div>
-      <div class="info">第 6 周 · 距复诊（11-13）还有 1 天</div>
+      <div class="big">第一阶段 · 基础康复 · 第 42 天 / 42 天</div>
+      <div class="info">第 6 周 / 6 周 · 距复诊（11-13）还有 1 天</div>
     </div>
     <div class="bar"><div style="width:100%"></div></div>
+    <div class="stages"><span class="stage current">① 基础康复</span><span class="stage ">② 力量重建</span><span class="stage ">③ 跑走结合</span><span class="stage ">④ 跑步回归</span></div>
   </div>
 
   <div class="grid-stats">
