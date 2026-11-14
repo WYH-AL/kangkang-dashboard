@@ -39,7 +39,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft
 .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
 .chart-box { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.05); padding: 14px; }
 .chart-box h3 { font-size: 15px; margin-bottom: 6px; color: #374151; }
-.chart { width: 100%; height: 260px; }
+.chart { width: 100%; height: 320px; }
 .chart.wide { grid-column: span 2; }
 .chart-box.wide { grid-column: span 2; }
 .table-box { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.05); padding: 16px; overflow-x: auto; margin-bottom: 16px; }
@@ -99,7 +99,7 @@ td.content-cell { text-align: left; max-width: 280px; overflow: visible; text-ov
   <div class="header">
     <div>
       <h1>📋 康复记录汇总</h1>
-      <div class="sub">汪亚辉 · 股四头肌肌腱损伤康复 · 生成于 2026-11-14 20:23</div>
+      <div class="sub">汪亚辉 · 股四头肌肌腱损伤康复 · 生成于 2026-11-14 20:41</div>
     </div>
   </div>
 
@@ -120,8 +120,8 @@ td.content-cell { text-align: left; max-width: 280px; overflow: visible; text-ov
   </div>
 
   <div class="charts">
-    <div class="chart-box"><h3>😴 睡眠：时长 & 评分</h3><div class="chart" id="c1"></div></div>
-    <div class="chart-box"><h3>🔋 身体电量 & 压力</h3><div class="chart" id="c3"></div></div>
+    <div class="chart-box wide"><h3>😴 睡眠：时长 & 评分</h3><div class="chart" id="c1"></div></div>
+    <div class="chart-box wide"><h3>🔋 身体电量 & 压力</h3><div class="chart" id="c3"></div></div>
     <div class="chart-box wide"><h3>💓 恢复：HRV & 静息心率</h3><div class="chart" id="c2"></div></div>
     <div class="chart-box wide"><h3>🏋️ 锻炼 & 步数</h3><div class="chart" id="c4"></div></div>
     <div class="chart-box wide"><h3>🧘 康复训练完成度</h3><div class="chart" id="c5" style="height:260px"></div></div>
