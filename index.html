@@ -73,6 +73,31 @@ td.content-cell { text-align: left; max-width: 280px; overflow: visible; text-ov
 .content-cell .hint { font-size: 11px; color: #93c5fd; margin-left: 5px; white-space: nowrap; }
 .content-cell details[open] .preview, .content-cell details[open] .hint { display: none; }
 .content-cell .full { white-space: normal; word-break: break-word; color: #374151; margin-top: 4px; max-width: 420px; }
+.calendar-wrap { background:#fff; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.05); padding:16px 18px; margin-bottom:18px; }
+.calendar-wrap h3 { font-size:15px; margin-bottom:10px; color:#374151; }
+.cal-legend { display:flex; align-items:center; gap:16px; font-size:12px; color:#6b7280; margin-bottom:12px; }
+.cal-legend .lg { display:inline-block; width:14px; height:14px; border-radius:3px; margin-right:5px; vertical-align:-2px; }
+.lg-rehab { background:#34d399; }
+.lg-fit { background:#60a5fa; }
+.lg-none { background:#ebedf0; }
+.cal-weekhead { display:grid; grid-template-columns:repeat(7,1fr); gap:6px; margin-bottom:4px; }
+.cal-weekhead span { text-align:center; font-size:12px; color:#9ca3af; }
+.cal-month { margin-bottom:14px; }
+.cal-month + .cal-month { border-top:2px solid #9ca3af; padding-top:14px; }
+.cal-month-title { font-weight:700; color:#374151; margin-bottom:8px; font-size:14px; }
+.cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:6px; }
+.cal-day { position:relative; height:48px; cursor:default; }
+.cal-day.cal-empty { background:transparent; }
+.cal-num { position:absolute; top:3px; left:6px; font-size:11px; color:#1f2937; z-index:2; font-weight:700; }
+.cal-top { position:absolute; top:0; left:0; right:0; height:50%; border-radius:5px 5px 0 0; background:#ebedf0; }
+.cal-bottom { position:absolute; bottom:0; left:0; right:0; height:50%; border-radius:0 0 5px 5px; background:#ebedf0; }
+.rehab-done .cal-top { background:#34d399; }
+.rehab-no .cal-top { background:#ebedf0; }
+.fit-done .cal-bottom { background:#60a5fa; }
+.fit-no .cal-bottom { background:#ebedf0; }
+.cal-day:not(.cal-empty):hover .cal-top { filter:brightness(.9); }
+.cal-day:not(.cal-empty):hover .cal-bottom { filter:brightness(.9); }
+.cal-day:hover::after { content:attr(data-tip); position:absolute; bottom:110%; left:50%; transform:translateX(-50%); background:rgba(17,24,39,.92); color:#fff; padding:6px 10px; border-radius:6px; font-size:12px; white-space:nowrap; z-index:20; pointer-events:none; box-shadow:0 4px 12px rgba(0,0,0,.2); }
 .footer { text-align: center; color: #9ca3af; font-size: 12px; margin-top: 16px; }
 @media (max-width: 820px) { .charts { grid-template-columns: 1fr; } .chart.wide { grid-column: span 1; } }
 #gate { position: fixed; inset: 0; background: #f0f4f8; display: flex; align-items: center; justify-content: center; z-index: 100; }
@@ -99,7 +124,7 @@ td.content-cell { text-align: left; max-width: 280px; overflow: visible; text-ov
   <div class="header">
     <div>
       <h1>📋 康复记录汇总</h1>
-      <div class="sub">汪亚辉 · 股四头肌肌腱损伤康复 · 生成于 2026-11-14 20:41</div>
+      <div class="sub">汪亚辉 · 股四头肌肌腱损伤康复 · 生成于 2026-11-14 20:54</div>
     </div>
   </div>
 
@@ -123,8 +148,70 @@ td.content-cell { text-align: left; max-width: 280px; overflow: visible; text-ov
     <div class="chart-box wide"><h3>😴 睡眠：时长 & 评分</h3><div class="chart" id="c1"></div></div>
     <div class="chart-box wide"><h3>🔋 身体电量 & 压力</h3><div class="chart" id="c3"></div></div>
     <div class="chart-box wide"><h3>💓 恢复：HRV & 静息心率</h3><div class="chart" id="c2"></div></div>
-    <div class="chart-box wide"><h3>🏋️ 锻炼 & 步数</h3><div class="chart" id="c4"></div></div>
-    <div class="chart-box wide"><h3>🧘 康复训练完成度</h3><div class="chart" id="c5" style="height:260px"></div></div>
+  </div>
+
+  <div class="calendar-wrap">
+    <h3>🧘 康复 & 健身日历</h3>
+    <div class="cal-legend"><span class="lg lg-rehab"></span>康复（泡沫轴+直腿抬高）<span class="lg lg-fit"></span>健身（正式运动）<span class="lg lg-none"></span>未做</div>
+    <div class="cal-weekhead"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div>
+<div class="cal-month"><div class="cal-month-title">10月</div><div class="cal-grid">
+<div class="cal-day cal-empty"></div>
+<div class="cal-day cal-empty"></div>
+<div class="cal-day cal-empty"></div>
+<div class="cal-day cal-empty"></div>
+<div class="cal-day rehab-done fit-no" data-tip="2026-10-02 ｜ 康复：泡沫轴5分钟、直腿抬高3组 ｜ 步数：2031"><span class="cal-num">2</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-done fit-done" data-tip="2026-10-03 ｜ 康复：泡沫轴5分钟、直腿抬高3组 ｜ 健身：力量 · 肩/胸/背/背/背 ｜ 步数：5853"><span class="cal-num">3</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-done fit-no" data-tip="2026-10-04 ｜ 康复：泡沫轴5分钟、直腿抬高3组 ｜ 步数：971"><span class="cal-num">4</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-done fit-no" data-tip="2026-10-05 ｜ 康复：泡沫轴5分钟、直腿抬高3组 ｜ 步数：526"><span class="cal-num">5</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-done fit-no" data-tip="2026-10-06 ｜ 康复：泡沫轴5分钟、直腿抬高3组 ｜ 步数：2181"><span class="cal-num">6</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-done fit-no" data-tip="2026-10-07 ｜ 康复：泡沫轴5分钟、直腿抬高3组 ｜ 步数：5886"><span class="cal-num">7</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-done fit-done" data-tip="2026-10-08 ｜ 康复：泡沫轴5分钟、直腿抬高3组 ｜ 健身：力量 · 肩/背/胸/背/手臂/其他 · 基础50(进度22/40) ｜ 步数：7866"><span class="cal-num">8</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-no fit-no" data-tip="2026-10-09 ｜ 步数：7254"><span class="cal-num">9</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-no fit-no" data-tip="2026-10-10 ｜ 步数：2530"><span class="cal-num">10</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-done fit-no" data-tip="2026-10-11 ｜ 康复：泡沫轴5分钟、直腿抬高3组 ｜ 步数：8514"><span class="cal-num">11</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-done fit-done" data-tip="2026-10-12 ｜ 康复：泡沫轴5分钟、直腿抬高3组 ｜ 健身：力量 · 肩/胸/背/臀/背 · 弹力带外旋/杠铃卧推/坐姿划船/臀桥/高位下拉/滑雪机 ｜ 步数：4209"><span class="cal-num">12</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-done fit-no" data-tip="2026-10-13 ｜ 康复：泡沫轴5分钟、直腿抬高3组 ｜ 步数：3369"><span class="cal-num">13</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-done fit-no" data-tip="2026-10-14 ｜ 康复：泡沫轴5分钟、直腿抬高3组 ｜ 步数：4037"><span class="cal-num">14</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-no fit-done" data-tip="2026-10-15 ｜ 健身：力量 · 肩/胸/臀/背/其他 · 基础50（进度24/40） ｜ 步数：6798"><span class="cal-num">15</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-no fit-no" data-tip="2026-10-16 ｜ 步数：5344"><span class="cal-num">16</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-no fit-no" data-tip="2026-10-17 ｜ 步数：11124"><span class="cal-num">17</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-done fit-no" data-tip="2026-10-18 ｜ 康复：泡沫轴5分钟、直腿抬高3组 ｜ 步数：7637"><span class="cal-num">18</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-no fit-done" data-tip="2026-10-19 ｜ 健身：力量 · 背/臀/手臂 · 基础50(进度25/40) ｜ 步数：6479"><span class="cal-num">19</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-done fit-no" data-tip="2026-10-20 ｜ 康复：泡沫轴5分钟、直腿抬高3组 ｜ 步数：3787"><span class="cal-num">20</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-no fit-no" data-tip="2026-10-21 ｜ 步数：4133"><span class="cal-num">21</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-done fit-no" data-tip="2026-10-22 ｜ 康复：泡沫轴5分钟、直腿抬高3组 ｜ 步数：6411"><span class="cal-num">22</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-no fit-no" data-tip="2026-10-23 ｜ 步数：10001"><span class="cal-num">23</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-no fit-no" data-tip="2026-10-24 ｜ 步数：6538"><span class="cal-num">24</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-done fit-no" data-tip="2026-10-25 ｜ 康复：泡沫轴5分钟、直腿抬高3组 ｜ 步数：5406"><span class="cal-num">25</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-done fit-done" data-tip="2026-10-26 ｜ 康复：泡沫轴5分钟、直腿抬高3组 ｜ 健身：力量 · 肩/胸/背/臀/其他 · 基础50(进度26/40) ｜ 步数：5691"><span class="cal-num">26</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-no fit-no" data-tip="2026-10-27 ｜ 步数：5339"><span class="cal-num">27</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-no fit-no" data-tip="2026-10-28 ｜ 步数：3819"><span class="cal-num">28</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-done fit-no" data-tip="2026-10-29 ｜ 康复：泡沫轴5分钟、直腿抬高3组 ｜ 步数：4664"><span class="cal-num">29</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-no fit-done" data-tip="2026-10-30 ｜ 健身：力量 · 背/臀 · 基础50(进度27/40) ｜ 步数：4470"><span class="cal-num">30</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-no fit-done" data-tip="2026-10-31 ｜ 健身：其他 · 篮球 ｜ 步数：11835"><span class="cal-num">31</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+</div></div>
+<div class="cal-month"><div class="cal-month-title">11月</div><div class="cal-grid">
+<div class="cal-day cal-empty"></div>
+<div class="cal-day cal-empty"></div>
+<div class="cal-day cal-empty"></div>
+<div class="cal-day cal-empty"></div>
+<div class="cal-day cal-empty"></div>
+<div class="cal-day cal-empty"></div>
+<div class="cal-day rehab-done fit-no" data-tip="2026-11-01 ｜ 康复：泡沫轴5分钟、直腿抬高3组 ｜ 步数：8716"><span class="cal-num">1</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-no fit-no" data-tip="2026-11-02 ｜ 步数：5312"><span class="cal-num">2</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-done fit-no" data-tip="2026-11-03 ｜ 康复：泡沫轴5分钟、直腿抬高3组 ｜ 步数：8496"><span class="cal-num">3</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-done fit-no" data-tip="2026-11-04 ｜ 康复：泡沫轴5分钟、直腿抬高3组 ｜ 步数：3367"><span class="cal-num">4</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-no fit-done" data-tip="2026-11-05 ｜ 健身：力量 · 背/臀 ｜ 步数：7236"><span class="cal-num">5</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-done fit-no" data-tip="2026-11-06 ｜ 康复：泡沫轴5分钟、直腿抬高3组 ｜ 步数：2629"><span class="cal-num">6</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-no fit-no" data-tip="2026-11-07 ｜ 步数：4482"><span class="cal-num">7</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-no fit-no" data-tip="2026-11-08 ｜ 步数：6291"><span class="cal-num">8</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-no fit-no" data-tip="2026-11-09 ｜ 步数：3637"><span class="cal-num">9</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-done fit-no" data-tip="2026-11-10 ｜ 康复：泡沫轴5分钟、直腿抬高3组 ｜ 步数：6713"><span class="cal-num">10</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-no fit-no" data-tip="2026-11-11 ｜ 步数：2958"><span class="cal-num">11</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-no fit-no" data-tip="2026-11-12 ｜ 步数：7334"><span class="cal-num">12</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-no fit-no" data-tip="2026-11-13 ｜ 步数：5025"><span class="cal-num">13</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+<div class="cal-day rehab-no fit-no" data-tip="2026-11-14 ｜ 步数：62"><span class="cal-num">14</span><span class="cal-top"></span><span class="cal-bottom"></span></div>
+</div></div>
   </div>
 
   <details class="table-box" open>
@@ -386,7 +473,7 @@ td.content-cell { text-align: left; max-width: 280px; overflow: visible; text-ov
 </div>
 
 <script>
-const DATA = {"dates_short": ["10-02", "10-03", "10-04", "10-05", "10-06", "10-07", "10-08", "10-09", "10-10", "10-11", "10-12", "10-13", "10-14", "10-15", "10-16", "10-17", "10-18", "10-19", "10-20", "10-21", "10-22", "10-23", "10-24", "10-25", "10-26", "10-27", "10-28", "10-29", "10-30", "10-31", "11-01", "11-02", "11-03", "11-04", "11-05", "11-06", "11-07", "11-08", "11-09", "11-10", "11-11", "11-12", "11-13", "11-14"], "sleep_hours": [7.97, 7.18, 6.39, 5.78, 4.35, 7.13, 5.35, 6.02, 5.98, 7.18, 5.54, 6.67, 4.23, 6.98, 6.8, 4.62, 6.98, 6.16, 6.22, 6.22, 6.53, 4.83, 6.5, 6.58, 5.7, 4.85, 4.12, 6.45, 4.42, 5.32, 5.4, 5.88, 6.65, 7.32, 6.42, 6.57, 5.2, 5.13, 5.95, 6.93, 8.38, 5.57, 5.31, 6.52], "sleep_score": [82, 84, 81, 40, 59, 41, 71, 71, 68, 49, 73, 75, 48, 78, 66, 38, 62, 75, 63, 65, 49, 68, 47, 76, 72, 69, 35, 77, 64, 41, 71, 76, 73, 85, 79, 75, 72, 68, 41, 48, 72, 78, 76, 40], "resting_hr": [62, 60, 62, 68, 67, 68, 61, 66, 65, 69, 64, 67, 69, 68, 71, 71, 72, 67, 72, 71, 74, 67, 75, 66, 64, 63, 71, 64, 63, 69, 63, 64, 64, 59, 59, 61, 59, 60, 81, 65, 63, 63, 64, 70], "hrv": [20, 23, 25, 10, 21, 15, 26, 20, 24, 22, 24, 21, 14, 22, 17, 18, 18, 21, 20, 19, 11, 22, 13, 26, 25, 23, 10, 23, 23, 11, 21, 22, 18, 23, 25, 21, 24, 23, 10, 15, 23, 24, 21, 12], "stress": [32, 36, 30, 55, 41, 54, 34, 34, 39, 50, 35, 32, 42, 36, 36, 58, 34, 38, 35, 37, 51, 42, 54, 28, 31, 29, 50, 28, 45, 62, 28, 32, 25, 25, 29, 27, 24, 27, 56, 40, 28, 35, 42, 63], "body_min": [5, 9, 8, 5, 5, 5, 5, 8, 5, 5, 5, 11, 5, 5, 5, 5, 5, 16, 6, 5, 5, 5, 5, 5, 19, 20, 5, 5, 5, 5, 5, 8, 8, 21, 20, 19, 20, 12, 5, 5, 5, 8, 5, 5], "body_max": [42, 69, 60, 21, 28, 20, 53, 48, 53, 23, 40, 47, 32, 37, 33, 17, 34, 54, 34, 35, 25, 34, 20, 45, 63, 73, 27, 49, 54, 13, 37, 62, 51, 80, 81, 67, 75, 66, 31, 30, 48, 68, 54, 20], "body_range": [37, 60, 52, 16, 23, 15, 48, 40, 48, 18, 35, 36, 27, 32, 28, 12, 29, 38, 28, 30, 20, 29, 15, 40, 44, 53, 22, 44, 49, 8, 32, 54, 43, 59, 61, 48, 55, 54, 26, 25, 43, 60, 49, 15], "foam": [5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, null, null, 5.0, 5.0, 5.0, 5.0, null, null, null, 5.0, null, 5.0, null, 5.0, null, null, 5.0, 5.0, null, null, 5.0, null, 5.0, 5.0, null, 5.0, 5.0, null, 5.0, null, null, null, 5.0, null, null, null, null], "leg_raise": [3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, null, null, 3.0, 3.0, 3.0, 3.0, null, null, null, 3.0, null, 3.0, null, 3.0, null, null, 3.0, 3.0, null, null, 3.0, null, null, 3.0, null, 3.0, 3.0, null, 3.0, null, null, null, 3.0, null, null, null, null], "rehab_calendar": [["2026-10-02", 1, 5.0, 3.0], ["2026-10-03", 1, 5.0, 3.0], ["2026-10-04", 1, 5.0, 3.0], ["2026-10-05", 1, 5.0, 3.0], ["2026-10-06", 1, 5.0, 3.0], ["2026-10-07", 1, 5.0, 3.0], ["2026-10-08", 1, 5.0, 3.0], ["2026-10-09", 0, null, null], ["2026-10-10", 0, null, null], ["2026-10-11", 1, 5.0, 3.0], ["2026-10-12", 1, 5.0, 3.0], ["2026-10-13", 1, 5.0, 3.0], ["2026-10-14", 1, 5.0, 3.0], ["2026-10-15", 0, null, null], ["2026-10-16", 0, null, null], ["2026-10-17", 0, null, null], ["2026-10-18", 1, 5.0, 3.0], ["2026-10-19", 0, null, null], ["2026-10-20", 1, 5.0, 3.0], ["2026-10-21", 0, null, null], ["2026-10-22", 1, 5.0, 3.0], ["2026-10-23", 0, null, null], ["2026-10-24", 0, null, null], ["2026-10-25", 1, 5.0, 3.0], ["2026-10-26", 1, 5.0, 3.0], ["2026-10-27", 0, null, null], ["2026-10-28", 0, null, null], ["2026-10-29", 1, 5.0, 3.0], ["2026-10-30", 0, null, null], ["2026-10-31", 0, 5.0, null], ["2026-11-01", 1, 5.0, 3.0], ["2026-11-02", 0, null, null], ["2026-11-03", 1, 5.0, 3.0], ["2026-11-04", 1, 5.0, 3.0], ["2026-11-05", 0, null, null], ["2026-11-06", 1, 5.0, 3.0], ["2026-11-07", 0, null, null], ["2026-11-08", 0, null, null], ["2026-11-09", 0, null, null], ["2026-11-10", 1, 5.0, 3.0], ["2026-11-11", 0, null, null]], "fit_duration": [null, 62.78, null, null, null, null, 61.77, null, null, null, 57.8, null, null, 61.75, null, null, null, 52.73, null, null, null, null, null, null, 56.67, null, null, null, 48.07, 90, null, null, null, null, 65.65, null, null, null, null, null, null, null, null, null], "fit_meta": [null, "力量 · 肩/胸/背/背/背", null, null, null, null, "力量 · 肩/背/胸/背/手臂/其他 · 基础50(进度22/40)", null, null, null, "力量 · 肩/胸/背/臀/背 · 弹力带外旋/杠铃卧推/坐姿划船/臀桥/高位下拉/滑雪机", null, null, "力量 · 肩/胸/臀/背/其他 · 基础50（进度24/40）", null, null, null, "力量 · 背/臀/手臂 · 基础50(进度25/40)", null, null, null, null, null, null, "力量 · 肩/胸/背/臀/其他 · 基础50(进度26/40)", null, null, null, "力量 · 背/臀 · 基础50(进度27/40)", "其他 · 篮球", null, null, null, null, "力量 · 背/臀", null, null, null, null, null, null, "跑步", null, null], "steps": [2031, 5853, 971, 526, 2181, 5886, 7866, 7254, 2530, 8514, 4209, 3369, 4037, 6798, 5344, 11124, 7637, 6479, 3787, 4133, 6411, 10001, 6538, 5406, 5691, 5339, 3819, 4664, 4470, 11835, 8716, 5312, 8496, 3367, 7236, 2629, 4482, 6291, 3637, 6713, 2958, 7334, 5025, 62]};
+const DATA = {"dates_short": ["10-02", "10-03", "10-04", "10-05", "10-06", "10-07", "10-08", "10-09", "10-10", "10-11", "10-12", "10-13", "10-14", "10-15", "10-16", "10-17", "10-18", "10-19", "10-20", "10-21", "10-22", "10-23", "10-24", "10-25", "10-26", "10-27", "10-28", "10-29", "10-30", "10-31", "11-01", "11-02", "11-03", "11-04", "11-05", "11-06", "11-07", "11-08", "11-09", "11-10", "11-11", "11-12", "11-13", "11-14"], "sleep_hours": [7.97, 7.18, 6.39, 5.78, 4.35, 7.13, 5.35, 6.02, 5.98, 7.18, 5.54, 6.67, 4.23, 6.98, 6.8, 4.62, 6.98, 6.16, 6.22, 6.22, 6.53, 4.83, 6.5, 6.58, 5.7, 4.85, 4.12, 6.45, 4.42, 5.32, 5.4, 5.88, 6.65, 7.32, 6.42, 6.57, 5.2, 5.13, 5.95, 6.93, 8.38, 5.57, 5.31, 6.52], "sleep_score": [82, 84, 81, 40, 59, 41, 71, 71, 68, 49, 73, 75, 48, 78, 66, 38, 62, 75, 63, 65, 49, 68, 47, 76, 72, 69, 35, 77, 64, 41, 71, 76, 73, 85, 79, 75, 72, 68, 41, 48, 72, 78, 76, 40], "resting_hr": [62, 60, 62, 68, 67, 68, 61, 66, 65, 69, 64, 67, 69, 68, 71, 71, 72, 67, 72, 71, 74, 67, 75, 66, 64, 63, 71, 64, 63, 69, 63, 64, 64, 59, 59, 61, 59, 60, 81, 65, 63, 63, 64, 70], "hrv": [20, 23, 25, 10, 21, 15, 26, 20, 24, 22, 24, 21, 14, 22, 17, 18, 18, 21, 20, 19, 11, 22, 13, 26, 25, 23, 10, 23, 23, 11, 21, 22, 18, 23, 25, 21, 24, 23, 10, 15, 23, 24, 21, 12], "stress": [32, 36, 30, 55, 41, 54, 34, 34, 39, 50, 35, 32, 42, 36, 36, 58, 34, 38, 35, 37, 51, 42, 54, 28, 31, 29, 50, 28, 45, 62, 28, 32, 25, 25, 29, 27, 24, 27, 56, 40, 28, 35, 42, 63], "body_min": [5, 9, 8, 5, 5, 5, 5, 8, 5, 5, 5, 11, 5, 5, 5, 5, 5, 16, 6, 5, 5, 5, 5, 5, 19, 20, 5, 5, 5, 5, 5, 8, 8, 21, 20, 19, 20, 12, 5, 5, 5, 8, 5, 5], "body_max": [42, 69, 60, 21, 28, 20, 53, 48, 53, 23, 40, 47, 32, 37, 33, 17, 34, 54, 34, 35, 25, 34, 20, 45, 63, 73, 27, 49, 54, 13, 37, 62, 51, 80, 81, 67, 75, 66, 31, 30, 48, 68, 54, 20], "body_range": [37, 60, 52, 16, 23, 15, 48, 40, 48, 18, 35, 36, 27, 32, 28, 12, 29, 38, 28, 30, 20, 29, 15, 40, 44, 53, 22, 44, 49, 8, 32, 54, 43, 59, 61, 48, 55, 54, 26, 25, 43, 60, 49, 15], "foam": [5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, null, null, 5.0, 5.0, 5.0, 5.0, null, null, null, 5.0, null, 5.0, null, 5.0, null, null, 5.0, 5.0, null, null, 5.0, null, 5.0, 5.0, null, 5.0, 5.0, null, 5.0, null, null, null, 5.0, null, null, null, null], "leg_raise": [3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, null, null, 3.0, 3.0, 3.0, 3.0, null, null, null, 3.0, null, 3.0, null, 3.0, null, null, 3.0, 3.0, null, null, 3.0, null, null, 3.0, null, 3.0, 3.0, null, 3.0, null, null, null, 3.0, null, null, null, null], "fit_duration": [null, 62.78, null, null, null, null, 61.77, null, null, null, 57.8, null, null, 61.75, null, null, null, 52.73, null, null, null, null, null, null, 56.67, null, null, null, 48.07, 90, null, null, null, null, 65.65, null, null, null, null, null, null, null, null, null], "fit_meta": [null, "力量 · 肩/胸/背/背/背", null, null, null, null, "力量 · 肩/背/胸/背/手臂/其他 · 基础50(进度22/40)", null, null, null, "力量 · 肩/胸/背/臀/背 · 弹力带外旋/杠铃卧推/坐姿划船/臀桥/高位下拉/滑雪机", null, null, "力量 · 肩/胸/臀/背/其他 · 基础50（进度24/40）", null, null, null, "力量 · 背/臀/手臂 · 基础50(进度25/40)", null, null, null, null, null, null, "力量 · 肩/胸/背/臀/其他 · 基础50(进度26/40)", null, null, null, "力量 · 背/臀 · 基础50(进度27/40)", "其他 · 篮球", null, null, null, null, "力量 · 背/臀", null, null, null, null, null, null, "跑步", null, null], "steps": [2031, 5853, 971, 526, 2181, 5886, 7866, 7254, 2530, 8514, 4209, 3369, 4037, 6798, 5344, 11124, 7637, 6479, 3787, 4133, 6411, 10001, 6538, 5406, 5691, 5339, 3819, 4664, 4470, 11835, 8716, 5312, 8496, 3367, 7236, 2629, 4482, 6291, 3637, 6713, 2958, 7334, 5025, 62]};
 const PWD_HASH = 'a5fdf5cc';
 const TEMP_PWD_HASH = '1c5b4c65';
 const TEMP_EXPIRY = 1793116800000;
@@ -492,40 +579,7 @@ function render() {
     ]
   }]);
 
-  charts.push(['c4', lineOption([
-    mkBar('健身时长(分)', DATA.fit_duration, '#f59e0b', 0),
-    mkBar('步数', DATA.steps, '#6366f1', 1)
-  ], { yAxis: [{ type:'value', name:'分钟', position:'left' }, { type:'value', name:'步', position:'right' }],
-       grid: { left: 40, right: 96, top: 30, bottom: 24 },
-       tooltip: { trigger: 'axis', formatter: function(params) {
-         var lines = params.map(function(p){ return p.marker + p.seriesName + ': ' + (p.value == null || p.value === '' ? '—' : p.value); });
-         var idx = params[0].dataIndex;
-         var extra = (DATA.fit_meta && DATA.fit_meta[idx]) ? '<br/><b>🏋️ 健身</b> ' + DATA.fit_meta[idx] : '';
-         return params[0].axisValue + '<br/>' + lines.join('<br/>') + extra;
-       }} })]);
 
-  charts.push(['c5', {
-    tooltip: { formatter: function(p) {
-      var d = p.data[0], done = p.data[1], foam = p.data[2], leg = p.data[3];
-      var parts = [];
-      if (foam != null) parts.push('泡沫轴 ' + foam + ' 分钟');
-      if (leg != null) parts.push('直腿抬高 ' + leg + ' 组');
-      var status = done === 1 ? '✅ 已完成' : '○ 未完成';
-      var detail = parts.length ? '（' + parts.join('、') + '）' : '';
-      return '<b>' + d + '</b><br/>' + status + detail;
-    }},
-    visualMap: { min: 0, max: 1, show: false, inRange: { color: ['#ebedf0', '#34d399'] } },
-    calendar: {
-      range: ['2026-10-02', '2026-12-18'],
-      cellSize: ['auto', 24],
-      yearLabel: { show: false },
-      monthLabel: { nameMap: 'ZH', color: '#6b7280' },
-      dayLabel: { nameMap: ['日','一','二','三','四','五','六'], firstDay: 1, color: '#9ca3af' },
-      itemStyle: { borderWidth: 3, borderColor: '#fff', borderRadius: 4 },
-      splitLine: { show: false }
-    },
-    series: [{ type: 'heatmap', coordinateSystem: 'calendar', data: DATA.rehab_calendar }]
-  }]);
 
   charts.forEach(function(c) {
     const el = document.getElementById(c[0]);
