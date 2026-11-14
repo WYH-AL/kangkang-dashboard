@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>康复记录汇总</title>
+<title>健康数据记录</title>
 <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -113,7 +113,7 @@ td.content-cell { text-align: left; max-width: 280px; overflow: visible; text-ov
 <body>
 <div id="gate">
   <div class="gate-box">
-    <h2>🔒 康复记录汇总</h2>
+    <h2>🔒 健康数据记录</h2>
     <p>内容受口令保护，请输入访问口令</p>
     <input type="password" id="pwd-input" placeholder="请输入口令" onkeydown="if(event.key==='Enter')tryUnlock()">
     <button onclick="tryUnlock()">进入</button>
@@ -124,8 +124,7 @@ td.content-cell { text-align: left; max-width: 280px; overflow: visible; text-ov
 <div class="container">
   <div class="header">
     <div>
-      <h1>📋 康复记录汇总</h1>
-      <div class="sub">汪亚辉 · 股四头肌肌腱损伤康复 · 生成于 2026-11-14 21:44</div>
+      <h1>📋 健康数据记录</h1>
     </div>
   </div>
 
@@ -756,7 +755,7 @@ function render() {
   const charts = [];
   charts.push(['c1', lineOption([
     mkLine('睡眠时长(h)', DATA.sleep_hours, '#81d8d0', 0, { area: 'rgba(129,216,208,0.30)' }),
-    mkLine('睡眠评分', DATA.sleep_score, '#4db8ae', 1)
+    mkLine('睡眠评分', DATA.sleep_score, '#28323b', 1)
   ], { yAxis: [{ type:'value', name:'小时', min:0 }, { type:'value', name:'评分', min:0, max:100 }] })]);
 
   charts.push(['c2', lineOption([
