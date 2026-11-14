@@ -98,10 +98,10 @@ td.content-cell { text-align: left; max-width: 280px; overflow: visible; text-ov
 .fit-no .cal-bottom { background:#feffef; }
 .cal-day:not(.cal-empty):hover .cal-top { filter:brightness(.9); }
 .cal-day:not(.cal-empty):hover .cal-bottom { filter:brightness(.9); }
-.cal-day:hover::after { content:attr(data-tip); position:absolute; bottom:110%; left:50%; transform:translateX(-50%); background:rgba(17,24,39,.92); color:#fff; padding:6px 10px; border-radius:6px; font-size:12px; white-space:nowrap; z-index:20; pointer-events:none; box-shadow:0 4px 12px rgba(0,0,0,.2); }
+.cal-day:hover::after { content:attr(data-tip); position:absolute; bottom:110%; left:var(--tip-left,50%); right:var(--tip-right,auto); transform:var(--tip-transform,translateX(-50%)); background:rgba(17,24,39,.92); color:#fff; padding:6px 10px; border-radius:6px; font-size:12px; white-space:nowrap; z-index:20; pointer-events:none; box-shadow:0 4px 12px rgba(0,0,0,.2); }
 .footer { text-align: center; color: #9ca3af; font-size: 12px; margin-top: 16px; }
 @media (max-width: 820px) { .charts { grid-template-columns: 1fr; } .chart.wide { grid-column: span 1; } }
-@media (max-width: 640px) { .cal-months { grid-template-columns: 1fr; column-gap: 0; } .cal-grid { gap: 4px; } .cal-weekhead { gap: 4px; } .calendar-wrap { padding: 12px 10px; } .cal-month { border-bottom: 2px solid #cbd5e1; padding-bottom: 14px; } .cal-month:last-child { border-bottom: none; padding-bottom: 0; } .cal-month-divider { border-bottom: none; padding-bottom: 14px; } }
+@media (max-width: 640px) { .cal-months { grid-template-columns: 1fr 1fr; column-gap: 6px; } .cal-grid { gap: 3px; } .cal-weekhead { gap: 3px; } .calendar-wrap { padding: 12px 8px; } .cal-num { font-size: 8px; top: 1px; left: 2px; } }
 #gate { position: fixed; inset: 0; background: #feffef; display: flex; align-items: center; justify-content: center; z-index: 100; }
 .gate-box { background: #fff; border-radius: 14px; box-shadow: 0 8px 30px rgba(0,0,0,.12); padding: 40px 36px; text-align: center; width: 320px; }
 .gate-box h2 { font-size: 20px; color: #28323b; margin-bottom: 8px; }
@@ -807,6 +807,30 @@ window.addEventListener('resize', function() {
     if (ch) ch.resize();
   });
 });
+
+// 日历 tooltip 方向自适应：靠左的格子向右弹出，靠右的格子向左弹出，中间居中
+function setupCalTips() {
+  document.querySelectorAll('.cal-day[data-tip]').forEach(function(day) {
+    day.addEventListener('mouseenter', function() {
+      var r = day.getBoundingClientRect();
+      var vw = window.innerWidth;
+      if (r.left < 120) {
+        day.style.setProperty('--tip-left', '0');
+        day.style.setProperty('--tip-right', 'auto');
+        day.style.setProperty('--tip-transform', 'none');
+      } else if (r.right > vw - 120) {
+        day.style.setProperty('--tip-left', 'auto');
+        day.style.setProperty('--tip-right', '0');
+        day.style.setProperty('--tip-transform', 'none');
+      } else {
+        day.style.setProperty('--tip-left', '50%');
+        day.style.setProperty('--tip-right', 'auto');
+        day.style.setProperty('--tip-transform', 'translateX(-50%)');
+      }
+    });
+  });
+}
+setupCalTips();
 </script>
 </body>
 </html>
