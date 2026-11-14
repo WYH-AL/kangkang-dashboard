@@ -77,9 +77,9 @@ td.content-cell { text-align: left; max-width: 280px; overflow: visible; text-ov
 .calendar-wrap h3 { font-size:15px; margin-bottom:10px; color:#374151; }
 .cal-legend { display:flex; align-items:center; gap:16px; font-size:12px; color:#6b7280; margin-bottom:12px; }
 .cal-legend .lg { display:inline-block; width:14px; height:14px; border-radius:3px; margin-right:5px; vertical-align:-2px; }
-.lg-rehab { background:#5ac8a5; }
-.lg-fit { background:#6aa9d8; }
-.lg-none { background:#f0f1f3; }
+.lg-rehab { background:#81d8d0; }
+.lg-fit { background:#28323b; }
+.lg-none { background:#feffef; }
 .cal-weekhead { display:grid; grid-template-columns:repeat(7,1fr); gap:5px; margin-bottom:5px; }
 .cal-weekhead span { text-align:center; font-size:11px; color:#9ca3af; }
 .cal-months { display:grid; grid-template-columns:1fr 1fr; column-gap:26px; }
@@ -90,12 +90,12 @@ td.content-cell { text-align: left; max-width: 280px; overflow: visible; text-ov
 .cal-day { position:relative; aspect-ratio:1; cursor:default; }
 .cal-day.cal-empty { background:transparent; }
 .cal-num { position:absolute; top:2px; left:4px; font-size:10px; color:#5b6472; z-index:2; font-weight:600; }
-.cal-top { position:absolute; top:0; left:0; right:0; height:50%; border-radius:4px 4px 0 0; background:#f0f1f3; }
-.cal-bottom { position:absolute; bottom:0; left:0; right:0; height:50%; border-radius:0 0 4px 4px; background:#f0f1f3; }
-.rehab-done .cal-top { background:#5ac8a5; }
-.rehab-no .cal-top { background:#f0f1f3; }
-.fit-done .cal-bottom { background:#6aa9d8; }
-.fit-no .cal-bottom { background:#f0f1f3; }
+.cal-top { position:absolute; top:0; left:0; right:0; height:50%; border-radius:4px 4px 0 0; background:#feffef; }
+.cal-bottom { position:absolute; bottom:0; left:0; right:0; height:50%; border-radius:0 0 4px 4px; background:#feffef; }
+.rehab-done .cal-top { background:#81d8d0; }
+.rehab-no .cal-top { background:#feffef; }
+.fit-done .cal-bottom { background:#28323b; }
+.fit-no .cal-bottom { background:#feffef; }
 .cal-day:not(.cal-empty):hover .cal-top { filter:brightness(.9); }
 .cal-day:not(.cal-empty):hover .cal-bottom { filter:brightness(.9); }
 .cal-day:hover::after { content:attr(data-tip); position:absolute; bottom:110%; left:50%; transform:translateX(-50%); background:rgba(17,24,39,.92); color:#fff; padding:6px 10px; border-radius:6px; font-size:12px; white-space:nowrap; z-index:20; pointer-events:none; box-shadow:0 4px 12px rgba(0,0,0,.2); }
@@ -125,7 +125,7 @@ td.content-cell { text-align: left; max-width: 280px; overflow: visible; text-ov
   <div class="header">
     <div>
       <h1>📋 康复记录汇总</h1>
-      <div class="sub">汪亚辉 · 股四头肌肌腱损伤康复 · 生成于 2026-11-14 21:07</div>
+      <div class="sub">汪亚辉 · 股四头肌肌腱损伤康复 · 生成于 2026-11-14 21:23</div>
     </div>
   </div>
 
